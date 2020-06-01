@@ -158,7 +158,7 @@ root@NetworkAutomation:~#
 ```shell
 root@NetworkAutomation:~# nano hosts
 ```
-<img src="" alt="">
+<img src="https://i.imgur.com/iAr2iX4.png" alt="host file on root directory">
 
 ```shell
 root@NetworkAutomation:~# ls
@@ -173,7 +173,7 @@ root@NetworkAutomation:~#
 ```
 
 ## Create ansible configuration file at root directory
-<img src="" alt="">
+<img src="https://i.imgur.com/ollsdAe.png" alt="Configuration file">
 
 ```shell
 [defaults]
@@ -181,3 +181,29 @@ hostfile = ./hosts
 host_key_checking = false
 timeout = 5
 ```
+
+We are using hosts that are configured at root directory --> ./hosts
+Host_key_checking set as *false* on lab environment, on production environment, it should be set as *true*.
+Timeout ssh = 5 minutes
+
+## Check configured hosts
+```shell
+root@NetworkAutomation:~# ansible --list-host all
+  hosts (4):
+    R1
+    R2
+    S1
+    S2
+root@NetworkAutomation:~#
+```
+<img src="https://i.imgur.com/TkdVN95.png" alt="Configured hosts">
+```shell
+root@NetworkAutomation-2:~# cat ansible.cfg 
+[defaults]
+inventory = ./hosts
+host_key_checking = false
+timeout = 5
+root@NetworkAutomation-2:~# 
+```
+
+**Infrastructure initial setup for this lab is ready**
