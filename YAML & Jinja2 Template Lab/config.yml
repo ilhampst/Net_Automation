@@ -1,0 +1,30 @@
+hostname: IOSv_Pnotes
+username: cisco
+secret  : cisco123
+ena_pass: cisco123
+ip_route1: 0.0.0.0
+ip_route2: 0.0.0.0
+next_hop: 192.168.122.1
+n_server: 1.1.1.1
+domain_name: pnotes.com
+modulus    : 1024
+vlan_no    : 1
+vlan_description: Management
+vlan_ip         : 192.168.1.1
+vlan_mask       : 255.255.255.0
+vlan_enabled    : true
+interfaces:
+  - name       : GigabitEthernet0/0
+    description: To Ubuntu Server
+    static     : true
+    ip         : 10.1.1.1
+    mask       : 255.255.255.0
+    enabled    : true
+  - name       : GigabitEthernet0/1
+    description: Connect to NAT
+    dhcp       : true
+    enabled    : true
+  - name       : GigabitEthernet0/2
+    description: reserved
+    static     : false
+    enabled    : false
