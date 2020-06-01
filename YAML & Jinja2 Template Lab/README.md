@@ -3,11 +3,13 @@
 *This is note from my early study in network automation, so this is far from perfection. Please use as reference only.*
 
 **There are 3 files:**
+
 - Python Loader, to combine template file and context file in YAML and write it into a file in txt format.
 - YAML context file, edit this file to add the parameters for the devices.
 - Jinja2 template file, this is the skeleton for the configuration file, we fill the variables with the data from context file
 
 **Rendering**
+
 To create the config file from those 3 files above, I'm using Powershell and navigate to the local directory of the project then execute with command:
 
 ```shell
