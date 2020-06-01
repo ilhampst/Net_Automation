@@ -1,0 +1,13 @@
+int eth0/0
+no shut
+ip add 192.168.122.100 255.255.255.0
+end
+
+username user password user123
+username user privilege 15
+ip domain-name packetnotes.com
+line vty 0 4
+transport input all
+login local
+!
+crypto key generate rsa
