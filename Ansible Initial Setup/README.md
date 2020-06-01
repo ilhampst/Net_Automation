@@ -197,13 +197,5 @@ root@NetworkAutomation:~# ansible --list-host all
 root@NetworkAutomation:~#
 ```
 <img src="https://i.imgur.com/TkdVN95.png" alt="Configured hosts">
-```shell
-root@NetworkAutomation-2:~# cat ansible.cfg 
-[defaults]
-inventory = ./hosts
-host_key_checking = false
-timeout = 5
-root@NetworkAutomation-2:~# 
-```
 
 **Infrastructure initial setup for this lab is ready**
