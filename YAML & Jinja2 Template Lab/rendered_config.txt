@@ -1,0 +1,35 @@
+! Generated Configuration
+hostname IOSv_Pnotes
+
+interface vlan 1
+  no shutdown
+  ip address 192.168.1.1 255.255.255.0
+
+username cisco privilege 15 secret cisco123
+enable password cisco123
+ip domain-name pnotes.com
+ip domain-lookup
+ip name-server 1.1.1.1
+crypto key generate rsa modulus 1024
+
+line con 0
+line aux 0
+line vty 0 4
+  password cisco123
+  login local
+  transport input all
+
+ip routing
+ip route 0.0.0.0 0.0.0.0 192.168.122.1
+
+interface GigabitEthernet0/0
+no switchport
+ip address 10.1.1.1 255.255.255.0
+description To Ubuntu Server
+no shutdown
+    interface GigabitEthernet0/1
+no switchport
+ip address dhcp
+description Connect to NAT
+no shutdown
+  
