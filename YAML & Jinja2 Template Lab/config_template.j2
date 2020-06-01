@@ -1,0 +1,48 @@
+! Generated Configuration
+hostname {{ hostname }}
+{# Interface VLAN name #}
+interface vlan {{ vlan_no }}
+  no shutdown
+  ip address {{ vlan_ip }} {{ vlan_mask }}
+{# Username and password to config SSH #}
+username {{ username }} privilege 15 secret {{ secret }}
+enable password {{ ena_pass }}
+ip domain-name {{ domain_name }}
+ip domain-lookup
+ip name-server {{ n_server }}
+crypto key generate rsa modulus {{ modulus }}
+{# Line console and SSH #}
+line con 0
+line aux 0
+line vty 0 4
+  password {{ ena_pass }}
+  login local
+  transport input all
+{# Enable IP Routing and IP Route #}
+ip routing
+ip route {{ ip_route1 }} {{ ip_route2 }} {{ next_hop}}
+{# Interface Configuration #}
+{% for interface in interfaces -%}
+{% if interface['dhcp'] -%}
+interface {{ interface['name'] }}
+no switchport
+ip address dhcp
+description {{ interface['description'] }}
+no shutdown
+  {% endif -%}
+  {% if interface['static'] -%}
+    {% if interface['enabled'] -%}
+interface {{ interface['name'] }}
+no switchport
+ip address {{ interface['ip'] }} {{ interface['mask'] }}
+description {{ interface['description'] }}
+no shutdown
+    {% endif -%}
+    {% if interface['enabled'] is false -%}
+interface {{ interface['name'] }}
+description {{ interface['description'] }}
+shutdown
+    {% endif -%}
+  {% endif -%}
+{% endfor -%}
+  
